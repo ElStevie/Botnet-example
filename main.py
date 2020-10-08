@@ -16,12 +16,15 @@ def send_command(controller):
     print_centered("Sending a command")
 
     command = input("Enter the command: ")
+    show_output = command[0] != " "
+    if not show_output:
+        command = command[1:]
     print("This is the command to be sent:")
     print(f"-->{command}<--")
     answer = input("Ok? (y/n) ")
     send = True if answer.lower() == "y" else False
     if send:
-        controller.command_bots(command)
+        controller.command_bots(command, show_output)
         print("\nEnd of the execution.")
     else:
         print("\nNo command was sent.")

